@@ -1,0 +1,45 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Dynamic Measurement Invariance Cutoffs for Dependent Groups
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Measurement invariance is often assessed with fit index difference cutoffs proposed by [Cheung & Rensvold (2002)](https://www.tandfonline.com/doi/abs/10.1207/S15328007SEM0902_5) or [Chen (2007)](https://www.tandfonline.com/doi/abs/10.1080/10705510701301834). However, these cutoffs have recently been noted to have limited generalizability and may not perform well outside of the conditions used to derive cutoffs. 
+
+[Dynamic measurement invariance (DMI) cutoffs](https://psycnet.apa.org/record/2026-27788-001) were proposed to generalize the procedure used to derive fit index difference cutoffs. The idea is to re-simulate cutoffs with a procedure similar to Cheung and Rensvold (2002) but the simulation design is based on the researcher's model and data characteristics. The result is that the cutoffs are custom-tailored to the researcher's specific context. 
+
+However, all of this work has only considered multiple-group factor models. These models are appropriate for evaluating invariance of independent groups (e.g., demographic characteristics, countries, languages), but they cannot accommodate situations where the groups are dependent such that responses are correlated across groups. Common examples of dependent groups include longitudinal data (where groups are different timepoints) or dyadic data (where groups are matched pairs like romantic partners, parents and children, or teachers and students). In such cases, other models are needed to incorporate betweeen-group correlations. However, there is no guidance for interpreting fit index difference cutoffs for these models.  
+
+The goal of dynamic measurement invariance cutoffs for dependent groups (DG-DMI) is to extend guidance for evaluating fit index differences to models that are appropriate for evaluating longitudinal or dyadic invariance. The method generalizes ideas from [Cheung & Rensvold (2002)](https://www.tandfonline.com/doi/abs/10.1207/S15328007SEM0902_5) and [DMI cutoffs]((https://psycnet.apa.org/record/2026-27788-001)) to other modeling frameworks that are capable of modeling between-group dependencies.  
+
+
+## Run the Shiny App Locally
+
+A web-based version of the app can be viewed [here](https://www.dynamicfit.app/MIDG). The app can also be run on your local machine to potentially increase speed or if the website is down for
+periodic maintenance. The Shiny app can be called locally from RStudio using the following code, 
+
+``` r
+list.of.packages <- c("shiny","lavaan", "dplyr","MASS","shinyjs","rmarkdown","knitr","tidyr","purrr","GenOrd","tinytex","semPlot","mbend")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
+shiny::runGitHub("DG-DMI","dmcneish18")
+```
+
+## Tutorial on Using the App
+
+A separate document located [here](https://osf.io/z4hyj) walks through how to use the app, how to interpret the output, and what options are currently available. 
